@@ -12,14 +12,14 @@ var stats: Stats;
 
 var assets: createjs.LoadQueue;
 var manifest = [
-    { id: "pinkButton", src: "assets/images/pinkButton.png" },
+    { id: "spaceShip", src: "assets/images/spaceShip.gif" },
     { id: "clicked", src: "assets/audio/clicked.wav" }
 ];
 
 
 // Game Variables
-var helloLabel: createjs.Text; // create a reference
-var pinkButton: createjs.Bitmap;
+//var helloLabel: createjs.Text; // create a reference
+var spaceShip: createjs.Bitmap;
 
 
 // Preloader Function
@@ -75,33 +75,9 @@ function pinkButtonClicked(event: createjs.MouseEvent) {
 
 // Callback functions that change the alpha transparency of the button
 
-// Mouseover event
-function pinkButtonOver() {
-    pinkButton.alpha = 0.8;
-}
 
-// Mouseout event
-function pinkButtonOut() {
-    pinkButton.alpha = 1.0;
-}
 
 // Our Main Game Function
 function main() {
-    console.log("Game is Running");
-    helloLabel = new createjs.Text("Hello World!", "40px Consolas", "#000000");
-    helloLabel.regX = helloLabel.getMeasuredWidth() * 0.5;
-    helloLabel.regY = helloLabel.getMeasuredHeight() * 0.5;
-    helloLabel.x = 160;
-    helloLabel.y = 190;
-    stage.addChild(helloLabel);
-
-    pinkButton = new createjs.Bitmap(assets.getResult("pinkButton"));
-    pinkButton.regX = pinkButton.getBounds().width * 0.5;
-    pinkButton.regY = pinkButton.getBounds().height * 0.5;
-    pinkButton.x = 160;
-    pinkButton.y = 270;
-    stage.addChild(pinkButton);
-    pinkButton.on("click", pinkButtonClicked);
-    pinkButton.on("mouseover", pinkButtonOver);
-    pinkButton.on("mouseout", pinkButtonOut);
+    
 }
