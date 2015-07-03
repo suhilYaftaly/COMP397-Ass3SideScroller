@@ -4,6 +4,9 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="objects/icon.ts" />
+/// <reference path="objects/coins.ts" />
+
 
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
@@ -13,13 +16,16 @@ var stats: Stats;
 var assets: createjs.LoadQueue;
 var manifest = [
     { id: "spaceShip", src: "assets/images/spaceShip.gif" },
+    { id: "coinGold", src: "assets/images/coinGold.gif" },
+
     { id: "clicked", src: "assets/audio/clicked.wav" }
 ];
 
 
 // Game Variables
 //var helloLabel: createjs.Text; // create a reference
-var spaceShip: createjs.Bitmap;
+var spaceShip: objects.icon;
+var coinGold: objects.coins;
 
 
 // Preloader Function
@@ -52,7 +58,7 @@ function setupStats() {
 
     // align bottom-right
     stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '330px';
+    stats.domElement.style.left = '650px';
     stats.domElement.style.top = '10px';
 
     document.body.appendChild(stats.domElement);
@@ -62,6 +68,10 @@ function setupStats() {
 // Callback function that creates our Main Game Loop - refreshed 60 fps
 function gameLoop() {
     stats.begin(); // Begin measuring
+
+    spaceShip.update();
+    coinGold.update();
+
 
     stage.update();
 
@@ -79,5 +89,11 @@ function pinkButtonClicked(event: createjs.MouseEvent) {
 
 // Our Main Game Function
 function main() {
-    
+    //added spaceShip to the stage
+    spaceShip = new objects.icon(assets.getResult("spaceShip"));
+
+    //add coin to the stage
+    coinGold = new objects.coins(assets.getResult("coinGold"));
+    stage.addChild(coinGold, spaceShip);
+
 }
