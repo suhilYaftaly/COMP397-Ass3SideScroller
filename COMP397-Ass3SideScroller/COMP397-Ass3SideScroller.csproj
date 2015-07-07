@@ -59,7 +59,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\images\bomb.gif" />
+    <Content Include="assets\images\bombImage.gif" />
     <Content Include="assets\images\coinBronze.gif" />
     <Content Include="assets\images\coinGold.gif" />
     <Content Include="assets\images\coinSilver.gif" />
@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\game.ts" />
+    <TypeScriptCompile Include="Scripts\objects\bomb.ts" />
     <TypeScriptCompile Include="Scripts\objects\coins.ts" />
     <TypeScriptCompile Include="Scripts\objects\icon.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />

@@ -5,6 +5,7 @@
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
 /// <reference path="objects/icon.ts" />
+/// <reference path="objects/bomb.ts" />
 /// <reference path="objects/coins.ts" />
 
 
@@ -17,7 +18,7 @@ var assets: createjs.LoadQueue;
 var manifest = [
     { id: "spaceShip", src: "assets/images/spaceShip.gif" },
     { id: "coinGold", src: "assets/images/coinGold.gif" },
-
+    { id: "bombImage", src: "assets/images/bombImage.gif" },
     { id: "clicked", src: "assets/audio/clicked.wav" }
 ];
 
@@ -26,6 +27,8 @@ var manifest = [
 //var helloLabel: createjs.Text; // create a reference
 var spaceShip: objects.icon;
 var coinGold: objects.coins;
+var bombImage:objects.bomb[] =[];
+
 
 
 // Preloader Function
@@ -71,7 +74,9 @@ function gameLoop() {
 
     spaceShip.update();
     coinGold.update();
-
+    for (var bombs = 0; bombs < 3; bombs++) {
+        bombImage[bombs].update();
+    }
 
     stage.update();
 
@@ -96,4 +101,9 @@ function main() {
     coinGold = new objects.coins(assets.getResult("coinGold"));
     stage.addChild(coinGold, spaceShip);
 
+    //add bombImage to the stage
+    for (var bombs = 0; bombs < 3; bombs++){
+        bombImage[bombs] = new objects.bomb(assets.getResult("bombImage"));
+        stage.addChild(bombImage[bombs]);
+    }
 }
