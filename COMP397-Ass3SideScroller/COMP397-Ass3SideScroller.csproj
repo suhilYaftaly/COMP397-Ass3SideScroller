@@ -63,7 +63,7 @@
     <Content Include="assets\images\coinBronze.gif" />
     <Content Include="assets\images\coinGold.gif" />
     <Content Include="assets\images\coinSilver.gif" />
-    <Content Include="assets\images\sky.jpg" />
+    <Content Include="assets\images\sky.png" />
     <Content Include="assets\images\spaceShip.gif" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\game.ts" />
+    <TypeScriptCompile Include="Scripts\objects\background.ts" />
     <TypeScriptCompile Include="Scripts\objects\bomb.ts" />
     <TypeScriptCompile Include="Scripts\objects\coins.ts" />
     <TypeScriptCompile Include="Scripts\objects\icon.ts" />

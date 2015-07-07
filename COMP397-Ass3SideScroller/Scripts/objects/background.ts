@@ -1,42 +1,36 @@
 ﻿module objects {
-    //bomb class +++++++++++++++++++++++++++++
-    export class bomb extends createjs.Bitmap {
+    //background class +++++++++++++++++++++++++++++
+    export class background extends createjs.Bitmap {
         // PUBLIC PROPERTIES
         width: number;
         height: number;
-        dx: number;
-        dy: number;
+        dx: number = 3;
 
         //CONSTRUSTOR
         constructor(imageString: string) {
             super(imageString);
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
-
+            
             this.reset();
         }
         //PRIVATE METHODS +++++++++++++++++
         private checkBounds(): void {
             //check if background has left screen
-            if (this.x <= -this.width) {
+            if (this.x <= -1120) {
                 this.reset();
             }
         }
 
         private reset(): void {
-            this.y = Math.floor(Math.random() * 526);//start bomb at random location
-            this.x = 780 + this.width;//start bomb off stage
-            this.dx = Math.floor(Math.random() * 5) + 5;
-            this.dy = Math.floor(Math.random() * 4) - 2;
+            this.y = 0; 
+            this.x = -0;//reset background off screen
         }
 
         //PUBLIC METHODS +++++++++++++++++        
         public update(): void {
-            this.x -= this.dx; //move bomb to the left of stage
-            this.y -= this.dy; //drifts bomb right and left
+            this.x -= this.dx; //move background to the left of stage
             this.checkBounds();
         }
     }
-}  
+}   

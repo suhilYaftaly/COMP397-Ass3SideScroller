@@ -26,8 +26,8 @@
         }
 
         private reset(): void{
-            this.y = Math.floor(Math.random() * 300);//start coin at random location
-            this.x = 600+this.width;//start coin off stage
+            this.y = Math.floor(Math.random() * 526);//start coin at random location
+            this.x = 780+this.width;//start coin off stage
         }
 
         //PUBLIC METHODS +++++++++++++++++        

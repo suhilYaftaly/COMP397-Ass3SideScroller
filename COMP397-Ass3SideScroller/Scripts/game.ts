@@ -4,6 +4,7 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="objects/background.ts" />
 /// <reference path="objects/icon.ts" />
 /// <reference path="objects/bomb.ts" />
 /// <reference path="objects/coins.ts" />
@@ -16,15 +17,17 @@ var stats: Stats;
 
 var assets: createjs.LoadQueue;
 var manifest = [
+    { id: "sky", src: "assets/images/sky.png" },
     { id: "spaceShip", src: "assets/images/spaceShip.gif" },
     { id: "coinGold", src: "assets/images/coinGold.gif" },
-    { id: "bombImage", src: "assets/images/bombImage.gif" },
-    { id: "clicked", src: "assets/audio/clicked.wav" }
+    { id: "bombImage", src: "assets/images/bombImage.gif" }
+    //{ id: "clicked", src: "assets/audio/clicked.wav" }
 ];
 
 
 // Game Variables
 //var helloLabel: createjs.Text; // create a reference
+var sky: objects.background;
 var spaceShip: objects.icon;
 var coinGold: objects.coins;
 var bombImage:objects.bomb[] =[];
@@ -61,7 +64,7 @@ function setupStats() {
 
     // align bottom-right
     stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '650px';
+    stats.domElement.style.left = '810px';
     stats.domElement.style.top = '10px';
 
     document.body.appendChild(stats.domElement);
@@ -72,34 +75,32 @@ function setupStats() {
 function gameLoop() {
     stats.begin(); // Begin measuring
 
+    sky.update();
     spaceShip.update();
     coinGold.update();
+
     for (var bombs = 0; bombs < 3; bombs++) {
         bombImage[bombs].update();
     }
 
     stage.update();
-
     stats.end(); // end measuring
 }
-
-// Callback function that allows me to respond to button click events
-function pinkButtonClicked(event: createjs.MouseEvent) {
-    createjs.Sound.play("clicked");
-}
-
-// Callback functions that change the alpha transparency of the button
-
 
 
 // Our Main Game Function
 function main() {
-    //added spaceShip to the stage
+    //background reference
+    sky = new objects.background(assets.getResult("sky"));
+
+    //spaceShip reference
     spaceShip = new objects.icon(assets.getResult("spaceShip"));
 
-    //add coin to the stage
+    //coin reference
     coinGold = new objects.coins(assets.getResult("coinGold"));
-    stage.addChild(coinGold, spaceShip);
+
+    //adding all references to the stage
+    stage.addChild(sky, coinGold, spaceShip);
 
     //add bombImage to the stage
     for (var bombs = 0; bombs < 3; bombs++){
