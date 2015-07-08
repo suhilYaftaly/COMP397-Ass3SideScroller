@@ -6,12 +6,13 @@
         public height: number;
         public isColliding: boolean = false;
         public soundString: string = "";
+        public name: string = "";
 
         // PROTECTED PROPERTIES
         protected dx: number;
         protected dy: number;       
 
-        //CONSTRUSTOR
+        //CONSTRUCTOR
         constructor(imageString: string) {
             super(imageString);
             this.width = this.getBounds().width;

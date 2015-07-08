@@ -12,6 +12,7 @@ var objects;
         //CONSTRUSTOR
         function coins(imageString) {
             _super.call(this, imageString);
+            this.name = "coin";
             this.soundString = "PickupCoin";
             this.dx = 4;
             this.reset();

@@ -13,7 +13,8 @@ var objects;
         function icon(imageString) {
             _super.call(this, imageString);
             this.soundString = "spaceShipSound";
-            this.x = 100;
+            this.x = 60;
+            createjs.Sound.play(this.soundString, { "loop": -1 });
         }
         //PUBLIC METHODS +++++++++++++++++
         icon.prototype.update = function () {

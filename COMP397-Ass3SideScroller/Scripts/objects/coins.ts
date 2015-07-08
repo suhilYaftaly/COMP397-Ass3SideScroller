@@ -4,6 +4,8 @@
         //CONSTRUSTOR
         constructor(imageString: string) {
             super(imageString);
+
+            this.name = "coin";
             this.soundString = "PickupCoin";
             this.dx = 4;            
             this.reset();

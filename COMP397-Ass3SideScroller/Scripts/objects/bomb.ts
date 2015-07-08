@@ -5,7 +5,9 @@
 
         //CONSTRUSTOR
         constructor(imageString: string) {
-            super(imageString);            
+            super(imageString);
+            
+            this.name = "bomb";            
             this.soundString = "Explosion";
 
             this.reset();

@@ -12,6 +12,10 @@
 /// <reference path="objects/bomb.ts" />
 /// <reference path="objects/coins.ts" />
 
+/// <reference path="objects/scoreboard.ts" />
+
+/// <reference path="managers/collision.ts" />
+
 
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
@@ -33,15 +37,19 @@ var manifest = [
     { id: "spaceShipSound", src: "assets/audio/spaceShipSound.wav" }
 ];
 
-
 // Game Variables
 //var helloLabel: createjs.Text; // create a reference
 var sky: objects.background;
 var spaceShip: objects.icon;
 var cloud: objects.coins; //used coins class for cloud. since its just one object and same code is required.
 var coinGold: objects.coins;
-var bombImage:objects.bomb[] =[];
+var bombImage: objects.bomb[] = [];
 
+//scoreboard label
+var scoreboard: objects.ScoreBoard;
+
+//Game Managers
+var collision: managers.Collision;
 
 // Preloader Function
 function preload() {
@@ -91,50 +99,26 @@ function gameLoop() {
 
     for (var bombs = 0; bombs < 3; bombs++) {
         bombImage[bombs].update();
-        checkCollision(bombImage[bombs]);
-    }
+        collision.check(bombImage[bombs]);
+    }    
 
-    checkCollision(coinGold);
+    collision.check(coinGold);
+    scoreboard.update();
     stage.update();
     stats.end(); // end measuring
 }
 
 
-//check collision
-function checkCollision(gameObject: objects.gameObjects) {
-    var p1: createjs.Point = new createjs.Point;
-    var p2: createjs.Point = new createjs.Point;
-
-    p1.x = spaceShip.x;
-    p1.y = spaceShip.y;
-
-    p2.x = gameObject.x;
-    p2.y = gameObject.y;
-
-    if (utility.distance(p1, p2) < ((spaceShip.height * 0.5) + (gameObject.height * 0.5))) {
-        if (gameObject.isColliding == false) {
-            createjs.Sound.play(gameObject.soundString);
-        }
-        gameObject.isColliding = true;
-    } else {
-        gameObject.isColliding = false;
-    }
-}
-
 // Our Main Game Function
 function main() {
     //background reference
     sky = new objects.background(assets.getResult("sky"));
-
     //cloud reference
     cloud = new objects.coins(assets.getResult("cloud"));
-
     //spaceShip reference
     spaceShip = new objects.icon(assets.getResult("spaceShip"));
-
     //coin reference
     coinGold = new objects.coins(assets.getResult("coinGold"));
-
 
     //adding all references to the stage
     stage.addChild(sky, cloud, coinGold, spaceShip);
@@ -144,4 +128,10 @@ function main() {
         bombImage[bombs] = new objects.bomb(assets.getResult("bombImage"));
         stage.addChild(bombImage[bombs]);
     }
+
+    //add scoreboard
+    scoreboard = new objects.ScoreBoard();
+
+    //add collision manager
+    collision = new managers.Collision();
 }

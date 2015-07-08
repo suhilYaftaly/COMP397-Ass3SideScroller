@@ -9,6 +9,8 @@
 /// <reference path="objects/icon.ts" />
 /// <reference path="objects/bomb.ts" />
 /// <reference path="objects/coins.ts" />
+/// <reference path="objects/scoreboard.ts" />
+/// <reference path="managers/collision.ts" />
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
 var stage;
@@ -33,6 +35,10 @@ var spaceShip;
 var cloud; //used coins class for cloud. since its just one object and same code is required.
 var coinGold;
 var bombImage = [];
+//scoreboard label
+var scoreboard;
+//Game Managers
+var collision;
 // Preloader Function
 function preload() {
     assets = new createjs.LoadQueue();
@@ -72,29 +78,12 @@ function gameLoop() {
     coinGold.update();
     for (var bombs = 0; bombs < 3; bombs++) {
         bombImage[bombs].update();
-        checkCollision(bombImage[bombs]);
+        collision.check(bombImage[bombs]);
     }
-    checkCollision(coinGold);
+    collision.check(coinGold);
+    scoreboard.update();
     stage.update();
     stats.end(); // end measuring
-}
-//check collision
-function checkCollision(gameObject) {
-    var p1 = new createjs.Point;
-    var p2 = new createjs.Point;
-    p1.x = spaceShip.x;
-    p1.y = spaceShip.y;
-    p2.x = gameObject.x;
-    p2.y = gameObject.y;
-    if (utility.distance(p1, p2) < ((spaceShip.height * 0.5) + (gameObject.height * 0.5))) {
-        if (gameObject.isColliding == false) {
-            createjs.Sound.play(gameObject.soundString);
-        }
-        gameObject.isColliding = true;
-    }
-    else {
-        gameObject.isColliding = false;
-    }
 }
 // Our Main Game Function
 function main() {
@@ -113,5 +102,9 @@ function main() {
         bombImage[bombs] = new objects.bomb(assets.getResult("bombImage"));
         stage.addChild(bombImage[bombs]);
     }
+    //add scoreboard
+    scoreboard = new objects.ScoreBoard();
+    //add collision manager
+    collision = new managers.Collision();
 }
 //# sourceMappingURL=game.js.map

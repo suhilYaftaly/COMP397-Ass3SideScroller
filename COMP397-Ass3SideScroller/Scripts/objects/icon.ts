@@ -1,12 +1,13 @@
 ﻿module objects {
     //spaceShip class +++++++++++++++++++++++++++++
     export class icon extends objects.gameObjects {    
-        //CONSTRUSTOR
+        //CONSTRUCTOR
         constructor(imageString: string) {
             super(imageString);
             this.soundString = "spaceShipSound";
-            
-            this.x = 100;
+
+            this.x = 60;
+            createjs.Sound.play(this.soundString, {"loop":-1});
         }
 
         //PUBLIC METHODS +++++++++++++++++

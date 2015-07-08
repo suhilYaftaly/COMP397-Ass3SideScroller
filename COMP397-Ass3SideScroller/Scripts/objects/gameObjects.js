@@ -9,11 +9,12 @@ var objects;
     //bomb class +++++++++++++++++++++++++++++
     var gameObjects = (function (_super) {
         __extends(gameObjects, _super);
-        //CONSTRUSTOR
+        //CONSTRUCTOR
         function gameObjects(imageString) {
             _super.call(this, imageString);
             this.isColliding = false;
             this.soundString = "";
+            this.name = "";
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.regX = this.width * 0.5;

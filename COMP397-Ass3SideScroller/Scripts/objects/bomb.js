@@ -12,6 +12,7 @@ var objects;
         //CONSTRUSTOR
         function bomb(imageString) {
             _super.call(this, imageString);
+            this.name = "bomb";
             this.soundString = "Explosion";
             this.reset();
         }
