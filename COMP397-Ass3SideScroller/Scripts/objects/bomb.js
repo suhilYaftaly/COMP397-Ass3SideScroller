@@ -12,15 +12,12 @@ var objects;
         //CONSTRUSTOR
         function bomb(imageString) {
             _super.call(this, imageString);
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
+            this.soundString = "Explosion";
             this.reset();
         }
         //PRIVATE METHODS +++++++++++++++++
         bomb.prototype.checkBounds = function () {
-            //check if background has left screen
+            //check if bomb has left screen
             if (this.x <= -this.width) {
                 this.reset();
             }
@@ -38,7 +35,7 @@ var objects;
             this.checkBounds();
         };
         return bomb;
-    })(createjs.Bitmap);
+    })(objects.gameObjects);
     objects.bomb = bomb;
 })(objects || (objects = {}));
 //# sourceMappingURL=bomb.js.map

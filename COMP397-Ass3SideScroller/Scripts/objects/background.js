@@ -12,7 +12,7 @@ var objects;
         //CONSTRUSTOR
         function background(imageString) {
             _super.call(this, imageString);
-            this.dx = 3;
+            this.dx = 4;
             this.width = this.getBounds().width;
             this.height = this.getBounds().height;
             this.reset();
@@ -20,7 +20,7 @@ var objects;
         //PRIVATE METHODS +++++++++++++++++
         background.prototype.checkBounds = function () {
             //check if background has left screen
-            if (this.x <= -1120) {
+            if (this.x <= -1958) {
                 this.reset();
             }
         };

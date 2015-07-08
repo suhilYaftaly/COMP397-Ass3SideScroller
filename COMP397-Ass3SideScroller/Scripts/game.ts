@@ -4,6 +4,7 @@
 /// <reference path="typings/soundjs/soundjs.d.ts" />
 /// <reference path="typings/preloadjs/preloadjs.d.ts" />
 
+/// <reference path="objects/gameobjects.ts" />
 /// <reference path="objects/background.ts" />
 /// <reference path="objects/icon.ts" />
 /// <reference path="objects/bomb.ts" />
@@ -17,11 +18,17 @@ var stats: Stats;
 
 var assets: createjs.LoadQueue;
 var manifest = [
+    //image links
     { id: "sky", src: "assets/images/sky.png" },
+    { id: "cloud", src: "assets/images/cloud.gif" },
     { id: "spaceShip", src: "assets/images/spaceShip.gif" },
     { id: "coinGold", src: "assets/images/coinGold.gif" },
-    { id: "bombImage", src: "assets/images/bombImage.gif" }
-    //{ id: "clicked", src: "assets/audio/clicked.wav" }
+    { id: "bombImage", src: "assets/images/bombImage.gif" },
+
+    //sound links
+    { id: "PickupCoin", src: "assets/audio/PickupCoin.wav" },
+    { id: "Explosion", src: "assets/audio/Explosion.wav" },
+    { id: "spaceShipSound", src: "assets/audio/spaceShipSound.wav" }
 ];
 
 
@@ -29,9 +36,9 @@ var manifest = [
 //var helloLabel: createjs.Text; // create a reference
 var sky: objects.background;
 var spaceShip: objects.icon;
+var cloud: objects.coins; //used coins class for cloud. since its just one object and same code is required.
 var coinGold: objects.coins;
 var bombImage:objects.bomb[] =[];
-
 
 
 // Preloader Function
@@ -76,22 +83,55 @@ function gameLoop() {
     stats.begin(); // Begin measuring
 
     sky.update();
+    cloud.update();
     spaceShip.update();
     coinGold.update();
 
     for (var bombs = 0; bombs < 3; bombs++) {
         bombImage[bombs].update();
+        checkCollision(bombImage[bombs]);
     }
 
+    checkCollision(coinGold);
     stage.update();
     stats.end(); // end measuring
 }
 
+//distance utility method
+function distance(p1: createjs.Point, p2: createjs.Point):number {
+    return Math.floor(Math.sqrt(Math.pow((p2.x - p1.x), 2) +
+        Math.pow((p2.y - p1.y), 2)));    
+}
+
+
+//check collision
+function checkCollision(gameObject: objects.gameObjects) {
+    var p1: createjs.Point = new createjs.Point;
+    var p2: createjs.Point = new createjs.Point;
+
+    p1.x = spaceShip.x;
+    p1.y = spaceShip.y;
+
+    p2.x = gameObject.x;
+    p2.y = gameObject.y;
+
+    if (distance(p1, p2) < ((spaceShip.height * 0.5) + (gameObject.height * 0.5))) {
+        if (gameObject.isColliding == false) {
+            createjs.Sound.play(gameObject.soundString);
+        }
+        gameObject.isColliding = true;
+    } else {
+        gameObject.isColliding = false;
+    }
+}
 
 // Our Main Game Function
 function main() {
     //background reference
     sky = new objects.background(assets.getResult("sky"));
+
+    //cloud reference
+    cloud = new objects.coins(assets.getResult("cloud"));
 
     //spaceShip reference
     spaceShip = new objects.icon(assets.getResult("spaceShip"));
@@ -99,8 +139,9 @@ function main() {
     //coin reference
     coinGold = new objects.coins(assets.getResult("coinGold"));
 
+
     //adding all references to the stage
-    stage.addChild(sky, coinGold, spaceShip);
+    stage.addChild(sky, cloud, coinGold, spaceShip);
 
     //add bombImage to the stage
     for (var bombs = 0; bombs < 3; bombs++){

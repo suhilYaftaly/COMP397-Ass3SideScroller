@@ -1,25 +1,18 @@
 ﻿module objects {
     //bomb class +++++++++++++++++++++++++++++
-    export class bomb extends createjs.Bitmap {
-        // PUBLIC PROPERTIES
-        width: number;
-        height: number;
-        dx: number;
-        dy: number;
+    export class bomb extends objects.gameObjects {
+        
 
         //CONSTRUSTOR
         constructor(imageString: string) {
-            super(imageString);
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
+            super(imageString);            
+            this.soundString = "Explosion";
 
             this.reset();
         }
         //PRIVATE METHODS +++++++++++++++++
         private checkBounds(): void {
-            //check if background has left screen
+            //check if bomb has left screen
             if (this.x <= -this.width) {
                 this.reset();
             }

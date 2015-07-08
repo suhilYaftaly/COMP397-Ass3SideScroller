@@ -4,7 +4,7 @@
         // PUBLIC PROPERTIES
         width: number;
         height: number;
-        dx: number = 3;
+        dx: number = 4;
 
         //CONSTRUSTOR
         constructor(imageString: string) {
@@ -17,7 +17,7 @@
         //PRIVATE METHODS +++++++++++++++++
         private checkBounds(): void {
             //check if background has left screen
-            if (this.x <= -1120) {
+            if (this.x <= -1958) {
                 this.reset();
             }
         }

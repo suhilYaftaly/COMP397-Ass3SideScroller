@@ -1,21 +1,12 @@
 ﻿module objects {
     //icon class +++++++++++++++++++++++++++++
-    export class coins extends createjs.Bitmap {
-        // PUBLIC PROPERTIES
-        width: number;
-        height: number;
-        dx: number = 3;
-
+    export class coins extends objects.gameObjects {
         //CONSTRUSTOR
         constructor(imageString: string) {
             super(imageString);
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
-
+            this.soundString = "PickupCoin";
+            this.dx = 4;            
             this.reset();
-
         }
         //PRIVATE METHODS +++++++++++++++++
         private checkBounds(): void{

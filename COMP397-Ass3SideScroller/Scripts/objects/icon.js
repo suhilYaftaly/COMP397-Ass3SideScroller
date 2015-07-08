@@ -6,16 +6,13 @@ var __extends = this.__extends || function (d, b) {
 };
 var objects;
 (function (objects) {
-    //icon class +++++++++++++++++++++++++++++
+    //spaceShip class +++++++++++++++++++++++++++++
     var icon = (function (_super) {
         __extends(icon, _super);
         //CONSTRUSTOR
         function icon(imageString) {
             _super.call(this, imageString);
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
+            this.soundString = "spaceShipSound";
             this.x = 100;
         }
         //PUBLIC METHODS +++++++++++++++++
@@ -23,7 +20,7 @@ var objects;
             this.y = stage.mouseY; //position under mouse
         };
         return icon;
-    })(createjs.Bitmap);
+    })(objects.gameObjects);
     objects.icon = icon;
 })(objects || (objects = {}));
 //# sourceMappingURL=icon.js.map

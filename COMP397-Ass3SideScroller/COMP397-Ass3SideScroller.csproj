@@ -59,7 +59,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\audio\Explosion.wav" />
+    <Content Include="assets\audio\PickupCoin.wav" />
+    <Content Include="assets\audio\spaceShipSound.wav" />
     <Content Include="assets\images\bombImage.gif" />
+    <Content Include="assets\images\cloud.gif" />
     <Content Include="assets\images\coinBronze.gif" />
     <Content Include="assets\images\coinGold.gif" />
     <Content Include="assets\images\coinSilver.gif" />
@@ -87,7 +91,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="assets\audio\" />
     <Folder Include="assets\fonts\" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +98,7 @@
     <TypeScriptCompile Include="Scripts\objects\background.ts" />
     <TypeScriptCompile Include="Scripts\objects\bomb.ts" />
     <TypeScriptCompile Include="Scripts\objects\coins.ts" />
+    <TypeScriptCompile Include="Scripts\objects\gameObjects.ts" />
     <TypeScriptCompile Include="Scripts\objects\icon.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />

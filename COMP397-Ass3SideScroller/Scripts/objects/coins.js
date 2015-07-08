@@ -12,11 +12,8 @@ var objects;
         //CONSTRUSTOR
         function coins(imageString) {
             _super.call(this, imageString);
-            this.dx = 3;
-            this.width = this.getBounds().width;
-            this.height = this.getBounds().height;
-            this.regX = this.width * 0.5;
-            this.regY = this.height * 0.5;
+            this.soundString = "PickupCoin";
+            this.dx = 4;
             this.reset();
         }
         //PRIVATE METHODS +++++++++++++++++
@@ -36,7 +33,7 @@ var objects;
             this.checkBounds();
         };
         return coins;
-    })(createjs.Bitmap);
+    })(objects.gameObjects);
     objects.coins = coins;
 })(objects || (objects = {}));
 //# sourceMappingURL=coins.js.map
