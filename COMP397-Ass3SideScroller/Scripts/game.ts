@@ -15,12 +15,14 @@
 /// <reference path="objects/scoreboard.ts" />
 
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/playstate.ts" />
 
 
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
 var stage: createjs.Stage;
 var stats: Stats;
+var game: createjs.Container;
 
 var assets: createjs.LoadQueue;
 var manifest = [
@@ -50,6 +52,10 @@ var scoreboard: objects.ScoreBoard;
 
 //Game Managers
 var collision: managers.Collision;
+
+
+//game states
+var play: states.Play;
 
 // Preloader Function
 function preload() {
@@ -92,18 +98,8 @@ function setupStats() {
 function gameLoop() {
     stats.begin(); // Begin measuring
 
-    sky.update();
-    cloud.update();
-    spaceShip.update();
-    coinGold.update();
+    play.update();
 
-    for (var bombs = 0; bombs < 3; bombs++) {
-        bombImage[bombs].update();
-        collision.check(bombImage[bombs]);
-    }    
-
-    collision.check(coinGold);
-    scoreboard.update();
     stage.update();
     stats.end(); // end measuring
 }
@@ -111,27 +107,12 @@ function gameLoop() {
 
 // Our Main Game Function
 function main() {
-    //background reference
-    sky = new objects.background(assets.getResult("sky"));
-    //cloud reference
-    cloud = new objects.coins(assets.getResult("cloud"));
-    //spaceShip reference
-    spaceShip = new objects.icon(assets.getResult("spaceShip"));
-    //coin reference
-    coinGold = new objects.coins(assets.getResult("coinGold"));
+    //add main game container
+    game = new createjs.Container();
 
-    //adding all references to the stage
-    stage.addChild(sky, cloud, coinGold, spaceShip);
-
-    //add bombImage to the stage
-    for (var bombs = 0; bombs < 3; bombs++){
-        bombImage[bombs] = new objects.bomb(assets.getResult("bombImage"));
-        stage.addChild(bombImage[bombs]);
-    }
-
-    //add scoreboard
-    scoreboard = new objects.ScoreBoard();
-
-    //add collision manager
-    collision = new managers.Collision();
+    // instantiate play state
+    play = new states.Play();
+    
+    //add game container to the stage
+    stage.addChild(game);    
 }

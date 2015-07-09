@@ -102,6 +102,7 @@
     <TypeScriptCompile Include="Scripts\objects\gameObjects.ts" />
     <TypeScriptCompile Include="Scripts\objects\icon.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreBoard.ts" />
+    <TypeScriptCompile Include="Scripts\states\playState.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\preloadjs\preloadjs.d.ts" />

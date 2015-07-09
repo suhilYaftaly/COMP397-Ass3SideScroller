@@ -9,7 +9,7 @@ var objects;
             this.livesLable = new createjs.Text("Lives:", "30px Consolas", "#FF8C00");
             this.scoreLable = new createjs.Text("Score:", "30px Consolas", "#FF8C00");
             this.scoreLable.x = 600;
-            stage.addChild(this.livesLable, this.scoreLable);
+            game.addChild(this.livesLable, this.scoreLable);
         }
         //PUBLIC METHODS ++++++++++++
         ScoreBoard.prototype.update = function () {

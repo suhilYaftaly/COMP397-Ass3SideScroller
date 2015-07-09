@@ -11,10 +11,12 @@
 /// <reference path="objects/coins.ts" />
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/playstate.ts" />
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
 var stage;
 var stats;
+var game;
 var assets;
 var manifest = [
     //image links
@@ -39,6 +41,8 @@ var bombImage = [];
 var scoreboard;
 //Game Managers
 var collision;
+//game states
+var play;
 // Preloader Function
 function preload() {
     assets = new createjs.LoadQueue();
@@ -72,39 +76,17 @@ function setupStats() {
 // Callback function that creates our Main Game Loop - refreshed 60 fps
 function gameLoop() {
     stats.begin(); // Begin measuring
-    sky.update();
-    cloud.update();
-    spaceShip.update();
-    coinGold.update();
-    for (var bombs = 0; bombs < 3; bombs++) {
-        bombImage[bombs].update();
-        collision.check(bombImage[bombs]);
-    }
-    collision.check(coinGold);
-    scoreboard.update();
+    play.update();
     stage.update();
     stats.end(); // end measuring
 }
 // Our Main Game Function
 function main() {
-    //background reference
-    sky = new objects.background(assets.getResult("sky"));
-    //cloud reference
-    cloud = new objects.coins(assets.getResult("cloud"));
-    //spaceShip reference
-    spaceShip = new objects.icon(assets.getResult("spaceShip"));
-    //coin reference
-    coinGold = new objects.coins(assets.getResult("coinGold"));
-    //adding all references to the stage
-    stage.addChild(sky, cloud, coinGold, spaceShip);
-    //add bombImage to the stage
-    for (var bombs = 0; bombs < 3; bombs++) {
-        bombImage[bombs] = new objects.bomb(assets.getResult("bombImage"));
-        stage.addChild(bombImage[bombs]);
-    }
-    //add scoreboard
-    scoreboard = new objects.ScoreBoard();
-    //add collision manager
-    collision = new managers.Collision();
+    //add main game container
+    game = new createjs.Container();
+    // instantiate play state
+    play = new states.Play();
+    //add game container to the stage
+    stage.addChild(game);
 }
 //# sourceMappingURL=game.js.map

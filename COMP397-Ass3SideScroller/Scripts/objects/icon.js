@@ -9,7 +9,7 @@ var objects;
     //spaceShip class +++++++++++++++++++++++++++++
     var icon = (function (_super) {
         __extends(icon, _super);
-        //CONSTRUSTOR
+        //CONSTRUCTOR
         function icon(imageString) {
             _super.call(this, imageString);
             this.soundString = "spaceShipSound";
