@@ -1,8 +1,8 @@
-//Source File:       coin.ts
+//Source File:       coinSilver.ts
 //Author:            A.Suhil M.Mohammad
 //Last modified by:  A.Suhil M.Mohammad
 //Date:              July 10, 2015
-//Description:       This class handels the golden coin behaviours
+//Description:       This class handels the silver coin behaviours
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -11,35 +11,35 @@ var __extends = this.__extends || function (d, b) {
 };
 var objects;
 (function (objects) {
-    //golden coin class +++++++++++++++++++++++++++++
-    var coins = (function (_super) {
-        __extends(coins, _super);
+    //silver coin class +++++++++++++++++++++++++++++
+    var CoinSilver = (function (_super) {
+        __extends(CoinSilver, _super);
         //CONSTRUSTOR
-        function coins(imageString) {
+        function CoinSilver(imageString) {
             _super.call(this, imageString);
-            this.name = "coin";
+            this.name = "coinSilver";
             this.soundString = "PickupCoin";
-            this.dx = 4;
+            this.dx = 4.5;
             this.reset();
         }
         //PRIVATE METHODS +++++++++++++++++
-        coins.prototype.checkBounds = function () {
+        CoinSilver.prototype.checkBounds = function () {
             //check if coin has left screen
             if (this.x <= -this.width) {
                 this.reset();
             }
         };
-        coins.prototype.reset = function () {
+        CoinSilver.prototype.reset = function () {
             this.y = Math.floor(Math.random() * 526); //start coin at random location
             this.x = 780 + this.width; //start coin off stage
         };
         //PUBLIC METHODS +++++++++++++++++        
-        coins.prototype.update = function () {
+        CoinSilver.prototype.update = function () {
             this.x -= this.dx; //move coin to the left of stage
             this.checkBounds();
         };
-        return coins;
+        return CoinSilver;
     })(objects.gameObjects);
-    objects.coins = coins;
+    objects.CoinSilver = CoinSilver;
 })(objects || (objects = {}));
-//# sourceMappingURL=coins.js.map
+//# sourceMappingURL=coinsilver.js.map

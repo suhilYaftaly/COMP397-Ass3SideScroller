@@ -1,5 +1,11 @@
-﻿module objects {
-    //bomb class +++++++++++++++++++++++++++++
+﻿//Source File:       gameObjects.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class handels the game objects  behaviours
+
+module objects {
+    //game objects class +++++++++++++++++++++++++++++
     export class gameObjects extends createjs.Bitmap {
         // PUBLIC PROPERTIES
         public width: number;

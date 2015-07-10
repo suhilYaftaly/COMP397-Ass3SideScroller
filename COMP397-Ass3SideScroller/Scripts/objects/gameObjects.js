@@ -1,3 +1,8 @@
+//Source File:       gameObjects.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class handels the game objects  behaviours
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -6,7 +11,7 @@ var __extends = this.__extends || function (d, b) {
 };
 var objects;
 (function (objects) {
-    //bomb class +++++++++++++++++++++++++++++
+    //game objects class +++++++++++++++++++++++++++++
     var gameObjects = (function (_super) {
         __extends(gameObjects, _super);
         //CONSTRUCTOR

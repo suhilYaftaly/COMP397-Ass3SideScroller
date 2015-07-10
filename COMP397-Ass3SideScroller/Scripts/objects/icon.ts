@@ -1,4 +1,10 @@
-﻿module objects {
+﻿//Source File:       icon.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class handels the games avatar character (UFO) behaviours
+
+module objects {
     //spaceShip class +++++++++++++++++++++++++++++
     export class icon extends objects.gameObjects {    
         //CONSTRUCTOR

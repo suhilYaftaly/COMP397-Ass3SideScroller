@@ -9,6 +9,8 @@
 /// <reference path="objects/icon.ts" />
 /// <reference path="objects/bomb.ts" />
 /// <reference path="objects/coins.ts" />
+/// <reference path="objects/coinsilver.ts" />
+/// <reference path="objects/coinbronze.ts" />
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
 /// <reference path="states/playstate.ts" />
@@ -24,6 +26,8 @@ var manifest = [
     { id: "cloud", src: "assets/images/cloud.gif" },
     { id: "spaceShip", src: "assets/images/spaceShip.gif" },
     { id: "coinGold", src: "assets/images/coinGold.gif" },
+    { id: "coinSilver", src: "assets/images/coinSilver.gif" },
+    { id: "coinBronze", src: "assets/images/coinBronze.gif" },
     { id: "bombImage", src: "assets/images/bombImage.gif" },
     //sound links
     { id: "PickupCoin", src: "assets/audio/PickupCoin.wav" },
@@ -36,6 +40,8 @@ var sky;
 var spaceShip;
 var cloud; //used coins class for cloud. since its just one object and same code is required.
 var coinGold;
+var coinSilver;
+var coinBronze;
 var bombImage = [];
 //scoreboard label
 var scoreboard;

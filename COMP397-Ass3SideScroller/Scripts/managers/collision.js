@@ -1,3 +1,8 @@
+//Source File:       collision.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class handels the collision between objects
 var managers;
 (function (managers) {
     var Collision = (function () {
@@ -22,6 +27,12 @@ var managers;
                     }
                     if (gameObject.name == "coin") {
                         scoreboard.score += 100;
+                    }
+                    if (gameObject.name == "coinSilver") {
+                        scoreboard.score += 70;
+                    }
+                    if (gameObject.name == "coinBronze") {
+                        scoreboard.score += 50;
                     }
                 }
                 gameObject.isColliding = true;

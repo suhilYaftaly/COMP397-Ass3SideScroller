@@ -1,4 +1,10 @@
-﻿module objects {
+﻿//Source File:       background.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class handels background behaviours
+
+module objects {
     //background class +++++++++++++++++++++++++++++
     export class background extends createjs.Bitmap {
         // PUBLIC PROPERTIES

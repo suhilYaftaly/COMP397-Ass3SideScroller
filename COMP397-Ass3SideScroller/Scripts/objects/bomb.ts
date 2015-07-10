@@ -1,4 +1,10 @@
-﻿module objects {
+﻿//Source File:       bomb.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class handels the enemy, bomb behaviours
+
+module objects {
     //bomb class +++++++++++++++++++++++++++++
     export class bomb extends objects.gameObjects {
         

@@ -1,4 +1,10 @@
-﻿module states {
+﻿//Source File:       playState.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class handels the way the game is played. It displayes all characters on the screen
+
+module states {
     export class Play {      
 
         // CONSTRUCTOR
@@ -13,6 +19,8 @@
             cloud.update();
             spaceShip.update();
             coinGold.update();
+            coinBronze.update();
+            coinSilver.update();
 
             for (var bombs = 0; bombs < 3; bombs++) {
                 bombImage[bombs].update();
@@ -20,6 +28,9 @@
             }
 
             collision.check(coinGold);
+            collision.check(coinSilver);
+            collision.check(coinBronze);
+
             scoreboard.update();
         }
 
@@ -30,15 +41,20 @@
 
             //background reference
             sky = new objects.background(assets.getResult("sky"));
+
             //cloud reference
-            cloud = new objects.coins(assets.getResult("cloud"));
+            cloud = new objects.CoinSilver(assets.getResult("cloud"));
+
             //spaceShip reference
             spaceShip = new objects.icon(assets.getResult("spaceShip"));
-            //coin reference
+
+            //coin references
             coinGold = new objects.coins(assets.getResult("coinGold"));
+            coinSilver = new objects.CoinSilver(assets.getResult("coinSilver"));
+            coinBronze = new objects.CoinBronze(assets.getResult("coinBronze"));
 
             //adding all references to the stage
-            game.addChild(sky, cloud, coinGold, spaceShip);
+            game.addChild(sky, cloud, coinGold, coinSilver, coinBronze, spaceShip);
 
             //add bombImage to the stage
             for (var bombs = 0; bombs < 3; bombs++) {

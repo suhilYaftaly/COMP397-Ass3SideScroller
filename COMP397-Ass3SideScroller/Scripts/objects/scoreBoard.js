@@ -1,5 +1,11 @@
+//Source File:       scoreBoard.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class displayes scoreboard labels on the screen
 var objects;
 (function (objects) {
+    // scoarboard class
     var ScoreBoard = (function () {
         //CONSTRUCTOR ++++++++++++++++++
         function ScoreBoard() {

@@ -1,32 +1,32 @@
-﻿//Source File:       coin.ts
+﻿//Source File:       coinBronze.ts
 //Author:            A.Suhil M.Mohammad
 //Last modified by:  A.Suhil M.Mohammad
 //Date:              July 10, 2015
-//Description:       This class handels the golden coin behaviours
+//Description:       This class handels the bronze coin behaviours
 
 module objects {
-    //golden coin class +++++++++++++++++++++++++++++
-    export class coins extends objects.gameObjects {
+    //silver coin class +++++++++++++++++++++++++++++
+    export class CoinBronze extends objects.gameObjects {
         //CONSTRUSTOR
         constructor(imageString: string) {
             super(imageString);
 
-            this.name = "coin";
+            this.name = "coinBronze";
             this.soundString = "PickupCoin";
-            this.dx = 4;            
+            this.dx = 5.5;
             this.reset();
         }
         //PRIVATE METHODS +++++++++++++++++
-        private checkBounds(): void{
+        private checkBounds(): void {
             //check if coin has left screen
             if (this.x <= -this.width) {
                 this.reset();
             }
         }
 
-        private reset(): void{
-            this.y = Math.floor(Math.random() * 526);//start coin at random location
-            this.x = 780+this.width;//start coin off stage
+        private reset(): void {
+            this.y = Math.floor(Math.random() * 508);//start coin at random location
+            this.x = 780 + this.width;//start coin off stage
         }
 
         //PUBLIC METHODS +++++++++++++++++        
@@ -35,4 +35,4 @@ module objects {
             this.checkBounds();
         }
     }
-}  
+}   

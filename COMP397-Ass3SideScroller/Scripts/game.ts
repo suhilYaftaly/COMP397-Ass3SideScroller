@@ -11,12 +11,20 @@
 /// <reference path="objects/icon.ts" />
 /// <reference path="objects/bomb.ts" />
 /// <reference path="objects/coins.ts" />
+/// <reference path="objects/coinsilver.ts" />
+/// <reference path="objects/coinbronze.ts" />
 
 /// <reference path="objects/scoreboard.ts" />
 
 /// <reference path="managers/collision.ts" />
 /// <reference path="states/playstate.ts" />
 
+
+//Source File:       game.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class is the main game class. It puts together all the other classes for the game to work
 
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
@@ -31,6 +39,8 @@ var manifest = [
     { id: "cloud", src: "assets/images/cloud.gif" },
     { id: "spaceShip", src: "assets/images/spaceShip.gif" },
     { id: "coinGold", src: "assets/images/coinGold.gif" },
+    { id: "coinSilver", src: "assets/images/coinSilver.gif" },
+    { id: "coinBronze", src: "assets/images/coinBronze.gif" },
     { id: "bombImage", src: "assets/images/bombImage.gif" },
 
     //sound links
@@ -43,8 +53,10 @@ var manifest = [
 //var helloLabel: createjs.Text; // create a reference
 var sky: objects.background;
 var spaceShip: objects.icon;
-var cloud: objects.coins; //used coins class for cloud. since its just one object and same code is required.
+var cloud: objects.CoinSilver; //used coins class for cloud. since its just one object and same code is required.
 var coinGold: objects.coins;
+var coinSilver: objects.CoinSilver;
+var coinBronze: objects.CoinBronze;
 var bombImage: objects.bomb[] = [];
 
 //scoreboard label
