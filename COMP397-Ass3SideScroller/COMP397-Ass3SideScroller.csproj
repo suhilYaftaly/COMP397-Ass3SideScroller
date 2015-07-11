@@ -67,6 +67,8 @@
     <Content Include="assets\images\coinBronze.gif" />
     <Content Include="assets\images\coinGold.gif" />
     <Content Include="assets\images\coinSilver.gif" />
+    <Content Include="assets\images\play.gif" />
+    <Content Include="assets\images\replay.png" />
     <Content Include="assets\images\sky.png" />
     <Content Include="assets\images\spaceShip.gif" />
     <Content Include="packages.config" />
@@ -104,6 +106,8 @@
     <TypeScriptCompile Include="Scripts\objects\gameObjects.ts" />
     <TypeScriptCompile Include="Scripts\objects\icon.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreBoard.ts" />
+    <TypeScriptCompile Include="Scripts\states\gameOver.ts" />
+    <TypeScriptCompile Include="Scripts\states\mainMenu.ts" />
     <TypeScriptCompile Include="Scripts\states\playState.ts" />
     <TypeScriptCompile Include="Scripts\typings\createjs-lib\createjs-lib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\easeljs\easeljs.d.ts" />

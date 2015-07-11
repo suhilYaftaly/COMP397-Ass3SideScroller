@@ -13,7 +13,14 @@
 /// <reference path="objects/coinbronze.ts" />
 /// <reference path="objects/scoreboard.ts" />
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/mainmenu.ts" />
 /// <reference path="states/playstate.ts" />
+/// <reference path="states/gameover.ts" />
+//Source File:       game.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class is the main game class. It puts together all the other classes for the game to work
 // Game Framework Variables
 var canvas = document.getElementById("canvas");
 var stage;
@@ -29,13 +36,14 @@ var manifest = [
     { id: "coinSilver", src: "assets/images/coinSilver.gif" },
     { id: "coinBronze", src: "assets/images/coinBronze.gif" },
     { id: "bombImage", src: "assets/images/bombImage.gif" },
+    { id: "play", src: "assets/images/play.gif" },
+    { id: "replay", src: "assets/images/replay.png" },
     //sound links
     { id: "PickupCoin", src: "assets/audio/PickupCoin.wav" },
     { id: "Explosion", src: "assets/audio/Explosion.wav" },
     { id: "spaceShipSound", src: "assets/audio/spaceShipSound.wav" }
 ];
 // Game Variables
-//var helloLabel: createjs.Text; // create a reference
 var sky;
 var spaceShip;
 var cloud; //used coins class for cloud. since its just one object and same code is required.
@@ -43,12 +51,16 @@ var coinGold;
 var coinSilver;
 var coinBronze;
 var bombImage = [];
+var startButton;
 //scoreboard label
 var scoreboard;
 //Game Managers
 var collision;
 //game states
 var play;
+var menu;
+var gameOver;
+var currentState = "menu";
 // Preloader Function
 function preload() {
     assets = new createjs.LoadQueue();
@@ -81,17 +93,32 @@ function setupStats() {
 }
 // Callback function that creates our Main Game Loop - refreshed 60 fps
 function gameLoop() {
-    stats.begin(); // Begin measuring
-    play.update();
+    stats.begin(); // Begin measuring    
+    if (currentState == "play") {
+        play.update();
+    }
     stage.update();
     stats.end(); // end measuring
+}
+function changeState(state) {
+    stage.removeChild(game);
+    if (state == "play") {
+        play = new states.Play();
+        createjs.Sound.play(this.soundString, { "loop": -1 });
+        createjs.Sound.registerSounds(manifest);
+    }
+    else if (state == "gameOver") {
+        createjs.Sound.removeAllSounds();
+        gameOver = new states.GameOver();
+    }
+    stage.addChild(game);
 }
 // Our Main Game Function
 function main() {
     //add main game container
-    game = new createjs.Container();
+    menu = new states.MainMenu();
     // instantiate play state
-    play = new states.Play();
+    //play = new states.Play();
     //add game container to the stage
     stage.addChild(game);
 }

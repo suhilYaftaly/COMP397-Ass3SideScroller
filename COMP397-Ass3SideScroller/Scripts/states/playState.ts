@@ -9,6 +9,7 @@ module states {
 
         // CONSTRUCTOR
         constructor() {
+            currentState = "play";
             this.main();
         }
 
@@ -32,6 +33,10 @@ module states {
             collision.check(coinBronze);
 
             scoreboard.update();
+
+            if (scoreboard.lives <= 0) {
+                changeState("gameOver");
+            }
         }
 
         // Our Main Game Function

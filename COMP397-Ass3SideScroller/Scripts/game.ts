@@ -17,7 +17,9 @@
 /// <reference path="objects/scoreboard.ts" />
 
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/mainmenu.ts" />
 /// <reference path="states/playstate.ts" />
+/// <reference path="states/gameover.ts" />
 
 
 //Source File:       game.ts
@@ -42,6 +44,8 @@ var manifest = [
     { id: "coinSilver", src: "assets/images/coinSilver.gif" },
     { id: "coinBronze", src: "assets/images/coinBronze.gif" },
     { id: "bombImage", src: "assets/images/bombImage.gif" },
+    { id: "play", src: "assets/images/play.gif" },
+    { id: "replay", src: "assets/images/replay.png" },
 
     //sound links
     { id: "PickupCoin", src: "assets/audio/PickupCoin.wav" },
@@ -50,7 +54,6 @@ var manifest = [
 ];
 
 // Game Variables
-//var helloLabel: createjs.Text; // create a reference
 var sky: objects.background;
 var spaceShip: objects.icon;
 var cloud: objects.CoinSilver; //used coins class for cloud. since its just one object and same code is required.
@@ -58,6 +61,8 @@ var coinGold: objects.coins;
 var coinSilver: objects.CoinSilver;
 var coinBronze: objects.CoinBronze;
 var bombImage: objects.bomb[] = [];
+var startButton: createjs.Bitmap;
+
 
 //scoreboard label
 var scoreboard: objects.ScoreBoard;
@@ -68,6 +73,10 @@ var collision: managers.Collision;
 
 //game states
 var play: states.Play;
+var menu: states.MainMenu;
+var gameOver: states.GameOver;
+var currentState: string = "menu";
+
 
 // Preloader Function
 function preload() {
@@ -108,22 +117,38 @@ function setupStats() {
 
 // Callback function that creates our Main Game Loop - refreshed 60 fps
 function gameLoop() {
-    stats.begin(); // Begin measuring
+    stats.begin(); // Begin measuring    
 
-    play.update();
-
+    if (currentState == "play") {
+        play.update();
+    }
     stage.update();
     stats.end(); // end measuring
+}
+
+function changeState(state: string) {
+    stage.removeChild(game);
+    if (state == "play") {
+        play = new states.Play();
+        createjs.Sound.play(this.soundString, { "loop": -1 });
+        createjs.Sound.registerSounds(manifest);
+
+    } else if (state == "gameOver") {
+        createjs.Sound.removeAllSounds();
+        gameOver = new states.GameOver();
+    }
+    stage.addChild(game);
 }
 
 
 // Our Main Game Function
 function main() {
+
     //add main game container
-    game = new createjs.Container();
+    menu = new states.MainMenu();
 
     // instantiate play state
-    play = new states.Play();
+    //play = new states.Play();
     
     //add game container to the stage
     stage.addChild(game);    

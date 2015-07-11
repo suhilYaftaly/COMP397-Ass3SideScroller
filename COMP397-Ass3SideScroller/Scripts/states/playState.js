@@ -1,8 +1,14 @@
+//Source File:       playState.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 10, 2015
+//Description:       This class handels the way the game is played. It displayes all characters on the screen
 var states;
 (function (states) {
     var Play = (function () {
         // CONSTRUCTOR
         function Play() {
+            currentState = "play";
             this.main();
         }
         //PUBLIC METHODS
@@ -22,6 +28,9 @@ var states;
             collision.check(coinSilver);
             collision.check(coinBronze);
             scoreboard.update();
+            if (scoreboard.lives <= 0) {
+                changeState("gameOver");
+            }
         };
         // Our Main Game Function
         Play.prototype.main = function () {
