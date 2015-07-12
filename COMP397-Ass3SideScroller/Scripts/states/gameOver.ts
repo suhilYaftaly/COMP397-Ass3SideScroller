@@ -1,9 +1,14 @@
-﻿module states {
+﻿//Source File:       gameOver.ts
+//Author:            A.Suhil M.Mohammad
+//Last modified by:  A.Suhil M.Mohammad
+//Date:              July 12, 2015
+//Description:       This is the last page of the game with a score number and a button to play again
+
+module states {
 
     export class GameOver {
         private gameOver: createjs.Text;
         private score: createjs.Text;
-        private replayButton: createjs.Bitmap;
 
         constructor() {
             currentState = "gameover";
@@ -35,36 +40,35 @@
             game.addChild(this.score);
 
             //replay button
-            this.replayButton = new createjs.Bitmap(assets.getResult("replay"));
-            this.replayButton.regX = this.replayButton.getBounds().width * 0.5;
-            this.replayButton.regY = this.replayButton.getBounds().height * 0.5;
-            this.replayButton.x = 400;
-            this.replayButton.y = 360;
+            replayButton = new createjs.Bitmap(assets.getResult("replay"));
+            replayButton.regX = replayButton.getBounds().width * 0.5;
+            replayButton.regY = replayButton.getBounds().height * 0.5;
+            replayButton.x = 400;
+            replayButton.y = 360;
 
-            game.addChild(this.replayButton);
+            game.addChild(replayButton);
             
 
             // adding events to replay button
-            this.replayButton.on("click", this.playAgain);
-            this.replayButton.on("mouseover", this.mouseOver);
-            this.replayButton.on("mouseout", this.mouseOut);
+            replayButton.on("click", this.playAgain);
+            replayButton.on("mouseover", this.mouseOver);
+            replayButton.on("mouseout", this.mouseOut);
 
         }
 
         //mouse over event
         private mouseOver() {
-            this.replayButton.alpha = 0.7;
+            replayButton.alpha = 0.7;
         }
 
         //mouse out event
         private mouseOut() {
-            this.replayButton.alpha = 1.0;
+            replayButton.alpha = 1.0;
         }
 
 
         private playAgain() {
             changeState("play");
-            createjs.Sound.registerSounds;
         }
 
     }

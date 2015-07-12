@@ -51,7 +51,11 @@ var coinGold;
 var coinSilver;
 var coinBronze;
 var bombImage = [];
+//instruction bomb image
+var regBomb;
+//states image buttons
 var startButton;
+var replayButton;
 //scoreboard label
 var scoreboard;
 //Game Managers
@@ -104,7 +108,7 @@ function changeState(state) {
     stage.removeChild(game);
     if (state == "play") {
         play = new states.Play();
-        createjs.Sound.play(this.soundString, { "loop": -1 });
+        //createjs.Sound.play(this.soundString, { "loop": -1 });
         createjs.Sound.registerSounds(manifest);
     }
     else if (state == "gameOver") {

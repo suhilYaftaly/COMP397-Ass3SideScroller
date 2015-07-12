@@ -61,7 +61,14 @@ var coinGold: objects.coins;
 var coinSilver: objects.CoinSilver;
 var coinBronze: objects.CoinBronze;
 var bombImage: objects.bomb[] = [];
+
+//instruction bomb image
+var regBomb: objects.bomb;
+
+//states image buttons
 var startButton: createjs.Bitmap;
+var replayButton: createjs.Bitmap;
+
 
 
 //scoreboard label
@@ -130,7 +137,7 @@ function changeState(state: string) {
     stage.removeChild(game);
     if (state == "play") {
         play = new states.Play();
-        createjs.Sound.play(this.soundString, { "loop": -1 });
+        //createjs.Sound.play(this.soundString, { "loop": -1 });
         createjs.Sound.registerSounds(manifest);
 
     } else if (state == "gameOver") {
